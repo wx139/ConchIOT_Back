@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="11962975-baac-41e1-a2dc-dc078cb1584d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ConchIOT_Back" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1YEblF0CARkmxMy31xuBrvdb4KE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/logs" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/logs" />
+      <recent name="$PROJECT_DIR$/control" />
+      <recent name="$PROJECT_DIR$/warndata" />
+      <recent name="$PROJECT_DIR$/analysis" />
+      <recent name="$PROJECT_DIR$/rbac" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/device/static" />
+      <recent name="$PROJECT_DIR$/device/state" />
+      <recent name="$PROJECT_DIR$/access" />
+      <recent name="$PROJECT_DIR$/device" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django server.ConchIOT_Back">
+    <configuration name="admin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ConchIOT_Back" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access/admin.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ConchIOT_Back" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access/gs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ConchIOT_Back" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConchIOT_Back" type="Python.DjangoServer" factoryName="Django server">
+      <module name="ConchIOT_Back" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="ConchIOT_Back.settings" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/opt/anaconda3/envs/ConchSwitch/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8001" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.ConchIOT_Back" />
+      <item itemvalue="Python.views" />
+      <item itemvalue="Python.admin" />
+      <item itemvalue="Python.gs" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.gs" />
+        <item itemvalue="Python.admin" />
+        <item itemvalue="Python.views" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="11962975-baac-41e1-a2dc-dc078cb1584d" name="Default Changelist" comment="" />
+      <created>1582510849058</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582510849058</updated>
+      <workItem from="1582510851263" duration="24229000" />
+      <workItem from="1582593528931" duration="23455000" />
+      <workItem from="1582679717534" duration="11678000" />
+      <workItem from="1582768454773" duration="5744000" />
+      <workItem from="1582947755852" duration="3001000" />
+      <workItem from="1583033645447" duration="3363000" />
+      <workItem from="1583111735759" duration="5501000" />
+      <workItem from="1583198654115" duration="30930000" />
+      <workItem from="1583371820345" duration="331000" />
+      <workItem from="1583374783328" duration="53000" />
+      <workItem from="1583374837141" duration="35000" />
+      <workItem from="1583374878324" duration="37000" />
+      <workItem from="1583374946943" duration="765000" />
+      <workItem from="1583375783147" duration="15272000" />
+      <workItem from="1583476892106" duration="5257000" />
+      <workItem from="1583550868138" duration="66939000" />
+      <workItem from="1583917813405" duration="15335000" />
+      <workItem from="1584061945798" duration="1000" />
+      <workItem from="1584063508390" duration="45761000" />
+      <workItem from="1584251281447" duration="2058000" />
+      <workItem from="1584348882646" duration="657000" />
+      <workItem from="1584510440865" duration="3677000" />
+      <workItem from="1584514640493" duration="545000" />
+      <workItem from="1584953270632" duration="1569000" />
+      <workItem from="1585033337693" duration="14042000" />
+      <workItem from="1585187997389" duration="5584000" />
+      <workItem from="1585296103714" duration="525000" />
+      <workItem from="1585533779264" duration="4884000" />
+      <workItem from="1585622068516" duration="14000" />
+      <workItem from="1585902278020" duration="1818000" />
+      <workItem from="1586226392931" duration="622000" />
+      <workItem from="1586311361973" duration="1516000" />
+      <workItem from="1586328803954" duration="1581000" />
+      <workItem from="1586489004873" duration="539000" />
+      <workItem from="1586504133186" duration="598000" />
+      <workItem from="1586744777745" duration="1279000" />
+      <workItem from="1586828911887" duration="6516000" />
+      <workItem from="1587024688763" duration="97000" />
+      <workItem from="1587024907762" duration="529000" />
+      <workItem from="1587112177930" duration="1936000" />
+      <workItem from="1587189807680" duration="1957000" />
+      <workItem from="1587298285727" duration="1082000" />
+      <workItem from="1587371608358" duration="45000" />
+      <workItem from="1587450879774" duration="1180000" />
+      <workItem from="1587535392337" duration="1088000" />
+      <workItem from="1587536996972" duration="2283000" />
+      <workItem from="1587549163626" duration="317000" />
+      <workItem from="1587551851516" duration="5746000" />
+      <workItem from="1587635703576" duration="2540000" />
+      <workItem from="1587955412660" duration="2429000" />
+      <workItem from="1588036915099" duration="511000" />
+      <workItem from="1588038144413" duration="11923000" />
+      <workItem from="1588299938665" duration="162000" />
+      <workItem from="1588300409564" duration="28143000" />
+      <workItem from="1588388634661" duration="34000" />
+      <workItem from="1588388672619" duration="512000" />
+      <workItem from="1588391425526" duration="5033000" />
+      <workItem from="1588419476770" duration="567000" />
+      <workItem from="1588429273275" duration="21000" />
+      <workItem from="1588429329161" duration="2151000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="23" width="613" height="797" key="#ConchIOT_Back" timestamp="1587549194831">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="413" y="23" width="613" height="797" key="#ConchIOT_Back/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587549194831" />
+    <state x="172" y="107" width="1071" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588037426959">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="172" y="107" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1588037426959" />
+    <state x="1669" y="154" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1582514925045" />
+    <state x="172" y="107" width="1071" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1584065055849" />
+    <state x="458" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585564654360">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="458" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.797@0.23.1440.797" timestamp="1585564654360" />
+    <state width="771" height="466" key="DebuggerActiveHint" timestamp="1584123077159">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="654" height="466" key="DebuggerActiveHint/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1583119567198" />
+    <state width="771" height="466" key="DebuggerActiveHint/0.23.1440.797@0.23.1440.797" timestamp="1584123077159" />
+    <state x="462" y="235" key="EnvironmentVariablesDialog" timestamp="1583376415862">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="462" y="235" key="EnvironmentVariablesDialog/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1583376415862" />
+    <state x="462" y="235" key="EnvironmentVariablesDialog/0.23.1440.797@0.23.1440.797" timestamp="1583375723778" />
+    <state width="960" height="278" key="GridCell.Tab.0.bottom" timestamp="1588429355813">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668495" />
+    <state width="1878" height="400" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962729931" />
+    <state width="1398" height="400" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583033501363" />
+    <state width="988" height="245" key="GridCell.Tab.0.bottom/0.23.1440.797/-1920.23.1920.1057@0.23.1440.797" timestamp="1586829751804" />
+    <state width="977" height="270" key="GridCell.Tab.0.bottom/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587635626017" />
+    <state width="1291" height="357" key="GridCell.Tab.0.bottom/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588414797500" />
+    <state width="960" height="278" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1588429355813" />
+    <state width="1341" height="364" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584511017078" />
+    <state width="1878" height="262" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.1920.977@1440.23.1920.977" timestamp="1582528822909" />
+    <state width="960" height="278" key="GridCell.Tab.0.center" timestamp="1588429355811">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668494" />
+    <state width="1878" height="400" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962729923" />
+    <state width="1398" height="400" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583033501362" />
+    <state width="988" height="245" key="GridCell.Tab.0.center/0.23.1440.797/-1920.23.1920.1057@0.23.1440.797" timestamp="1586829751803" />
+    <state width="977" height="270" key="GridCell.Tab.0.center/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587635626016" />
+    <state width="1291" height="357" key="GridCell.Tab.0.center/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588414797500" />
+    <state width="960" height="278" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1588429355811" />
+    <state width="1341" height="364" key="GridCell.Tab.0.center/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584511017076" />
+    <state width="1878" height="262" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.1920.977@1440.23.1920.977" timestamp="1582528822908" />
+    <state width="960" height="278" key="GridCell.Tab.0.left" timestamp="1588429355810">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668493" />
+    <state width="1878" height="400" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962729922" />
+    <state width="1398" height="400" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583033501361" />
+    <state width="988" height="245" key="GridCell.Tab.0.left/0.23.1440.797/-1920.23.1920.1057@0.23.1440.797" timestamp="1586829751802" />
+    <state width="977" height="270" key="GridCell.Tab.0.left/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587635626016" />
+    <state width="1291" height="357" key="GridCell.Tab.0.left/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588414797499" />
+    <state width="960" height="278" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1588429355810" />
+    <state width="1341" height="364" key="GridCell.Tab.0.left/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584511017074" />
+    <state width="1878" height="262" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.1920.977@1440.23.1920.977" timestamp="1582528822907" />
+    <state width="960" height="278" key="GridCell.Tab.0.right" timestamp="1588429355812">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668494" />
+    <state width="1878" height="400" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962729930" />
+    <state width="1398" height="400" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583033501362" />
+    <state width="988" height="245" key="GridCell.Tab.0.right/0.23.1440.797/-1920.23.1920.1057@0.23.1440.797" timestamp="1586829751803" />
+    <state width="977" height="270" key="GridCell.Tab.0.right/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587635626017" />
+    <state width="1291" height="357" key="GridCell.Tab.0.right/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588414797500" />
+    <state width="960" height="278" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1588429355812" />
+    <state width="1341" height="364" key="GridCell.Tab.0.right/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1584511017077" />
+    <state width="1878" height="262" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.1920.977@1440.23.1920.977" timestamp="1582528822908" />
+    <state width="1140" height="178" key="GridCell.Tab.1.bottom" timestamp="1588388518947">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.1.bottom/0.0.1440.820/1440.23.1920.1057@0.0.1440.820" timestamp="1583311588670" />
+    <state width="1398" height="306" key="GridCell.Tab.1.bottom/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668497" />
+    <state width="1398" height="400" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583033501365" />
+    <state width="1878" height="400" key="GridCell.Tab.1.bottom/0.23.1440.797/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962736773" />
+    <state width="862" height="200" key="GridCell.Tab.1.bottom/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1586917416739" />
+    <state width="1140" height="178" key="GridCell.Tab.1.bottom/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588388518947" />
+    <state width="849" height="178" key="GridCell.Tab.1.bottom/0.23.1440.797@0.23.1440.797" timestamp="1588387108285" />
+    <state width="1140" height="178" key="GridCell.Tab.1.center" timestamp="1588388518947">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.1.center/0.0.1440.820/1440.23.1920.1057@0.0.1440.820" timestamp="1583311588668" />
+    <state width="1398" height="306" key="GridCell.Tab.1.center/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668496" />
+    <state width="1398" height="400" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1583033501364" />
+    <state width="1878" height="400" key="GridCell.Tab.1.center/0.23.1440.797/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962736771" />
+    <state width="862" height="200" key="GridCell.Tab.1.center/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1586917416739" />
+    <state width="1140" height="178" key="GridCell.Tab.1.center/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588388518947" />
+    <state width="849" height="178" key="GridCell.Tab.1.center/0.23.1440.797@0.23.1440.797" timestamp="1588387108284" />
+    <state width="1140" height="178" key="GridCell.Tab.1.left" timestamp="1588388518947">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.1.left/0.0.1440.820/1440.23.1920.1057@0.0.1440.820" timestamp="1583311588667" />
+    <state width="1398" height="306" key="GridCell.Tab.1.left/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668495" />
+    <state width="1398" height="400" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1583033501363" />
+    <state width="1878" height="400" key="GridCell.Tab.1.left/0.23.1440.797/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962736770" />
+    <state width="862" height="200" key="GridCell.Tab.1.left/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1586917416739" />
+    <state width="1140" height="178" key="GridCell.Tab.1.left/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588388518947" />
+    <state width="849" height="178" key="GridCell.Tab.1.left/0.23.1440.797@0.23.1440.797" timestamp="1588387108284" />
+    <state width="1140" height="178" key="GridCell.Tab.1.right" timestamp="1588388518947">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state width="1398" height="306" key="GridCell.Tab.1.right/0.0.1440.820/1440.23.1920.1057@0.0.1440.820" timestamp="1583311588669" />
+    <state width="1398" height="306" key="GridCell.Tab.1.right/0.0.1440.900/1440.0.1920.1080@0.0.1440.900" timestamp="1583311668496" />
+    <state width="1398" height="400" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1583033501364" />
+    <state width="1878" height="400" key="GridCell.Tab.1.right/0.23.1440.797/1440.0.1920.1080@1440.0.1920.1080" timestamp="1582962736772" />
+    <state width="862" height="200" key="GridCell.Tab.1.right/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1586917416739" />
+    <state width="1140" height="178" key="GridCell.Tab.1.right/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588388518947" />
+    <state width="849" height="178" key="GridCell.Tab.1.right/0.23.1440.797@0.23.1440.797" timestamp="1588387108285" />
+    <state x="221" y="60" key="SettingsEditor" timestamp="1587549188536">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="221" y="60" key="SettingsEditor/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1587549188536" />
+    <state x="221" y="60" key="SettingsEditor/0.23.1440.797@0.23.1440.797" timestamp="1584135979833" />
+    <state width="720" height="398" key="XDebugger.FullValuePopup" timestamp="1583480273191">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="720" height="398" key="XDebugger.FullValuePopup/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1583480273191" />
+    <state x="59" y="33" width="1353" height="786" key="dock-window-1" timestamp="1588320820327">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="1440" y="23" width="1024" height="936" key="dock-window-1/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1583303359793" />
+    <state x="59" y="33" width="1353" height="786" key="dock-window-1/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588320820327" />
+    <state x="476" y="191" width="964" height="546" key="dock-window-1/0.23.1440.797@0.23.1440.797" timestamp="1584271901454" />
+    <state x="79" y="23" width="1353" height="608" key="dock-window-2" timestamp="1588320820327">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="1525" y="223" width="1014" height="555" key="dock-window-2/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1582619507757" />
+    <state x="79" y="23" width="1353" height="608" key="dock-window-2/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588320820327" />
+    <state x="2080" y="289" width="639" height="729" key="find.popup" timestamp="1588318339152">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2080" y="289" width="639" height="729" key="find.popup/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1588318339152" />
+    <state x="469" y="185" width="670" height="510" key="search.everywhere.popup" timestamp="1583398958655">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="469" y="185" width="670" height="510" key="search.everywhere.popup/0.23.1440.797/1440.23.1920.1057@0.23.1440.797" timestamp="1583398958655" />
+    <state x="2065" y="238" width="670" height="676" key="search.everywhere.popup/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1582533737617" />
+    <state x="469" y="185" width="670" height="510" key="search.everywhere.popup/0.23.1440.797@0.23.1440.797" timestamp="1583034687658" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/opt/anaconda3/envs/ConchSwitch/lib/python3.7/site-packages/django/db/models/manager.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/datainput.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rbac/views.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rbac/views.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rbac/views.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rbac/views.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rbac/views.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>342</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>370</line>
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>371</line>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>372</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>367</line>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/access/tasks.py</url>
+          <line>366</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ConchIOT_Back$admin.coverage" NAME="admin Coverage Results" MODIFIED="1584510465231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access" />
+    <SUITE FILE_PATH="coverage/ConchIOT_Back$gs.coverage" NAME="gs Coverage Results" MODIFIED="1585237395530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access" />
+    <SUITE FILE_PATH="coverage/ConchIOT_Back$views.coverage" NAME="views Coverage Results" MODIFIED="1583378362012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access" />
+  </component>
+</project>

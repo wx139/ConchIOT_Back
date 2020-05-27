@@ -37,29 +37,48 @@ def getcrc(crcdm):
     target = bytes().fromhex(crcdm)
     crc = "{:4X}".format(
         CRC16(modbus_flag=True).calculate(target))
-    crc = crc[2:4] + crc[0:2]
+    crc = (crc[2:4] + crc[0:2]).replace(" ","0")
     crcdm = crcdm + crc
     return crcdm
 
-n_proVol=3
-n_proEle=5
-n_proTem=7
-n_meaVol=9
-n_meaEle=11
-n_tPower=13
-n_nPower=17
-n_meaHz=21
-n_tEle=23
-n_nEle=27
-n_pEle=31
-n_state=33
-n_active=35
-n_newThing=37
-n_stateEqu=39
-n_snum=41
-n_errornum=43
-n_copy1=45
-n_copy2=47
+#100系列报文标示
+n_meaVol_100=9
+n_meaEle_100=11
+n_tPower_100=13
+n_nPower_100=17
+n_meaHz_100=21
+n_tEle_100=23
+n_nEle_100=27
+n_pEle_100=31
+n_state_100=33
+n_active_100=35
+n_newThing_100=37
+n_stateEqu_100=39
+n_snum_100=41
+n_errornum_100=43
+n_copy1_100=45
+n_copy2_100=47
+
+#300系列+WL报文标示
+n_Ltemp_300=3
+n_Ntemp_300=5
+n_Ctemp_300=7
+n_meaVol_300=9
+n_meaEle_300=11
+n_tPower_300=13
+n_nPower_300=17
+n_meaHz_300=21
+n_tEle_300=23
+n_nEle_300=27
+n_pEle_300=49
+n_state_300=33
+n_copy1_300=35
+n_copy2_300=37
+n_stateEqu_300=39
+n_snum_300=41
+n_errornum_300=43
+n_copy1_300=35
+n_copy2_300=47
 
 
 def gettf(s):
@@ -176,38 +195,11 @@ def data_in_mysql_modbus(sn,data):
             except:
                 pass
         elif ctrnum == '04':
-            # try:
-                Bnum = int(datas[2], 16)
-                proVol = int(datas[n_proVol] + datas[n_proVol + 1], 16) * 0.1
-                proEle = int(datas[n_proEle] + datas[n_proEle + 1], 16) * 0.01
-                proTem = int(datas[n_proTem] + datas[n_proTem + 1], 16) * 0.1
-                meaVol = int(datas[n_meaVol] + datas[n_meaVol + 1], 16) * 0.1
-                meaEle = int(datas[n_meaEle] + datas[n_meaEle + 1], 16) * 0.01
-                tPower = int(datas[n_tPower] + datas[n_tPower + 1] + datas[n_tPower + 2] + datas[n_tPower + 3], 16) * 0.1
-                nPower = int(datas[n_nPower] + datas[n_nPower + 1] + datas[n_nPower + 2] + datas[n_nPower + 3], 16) * 0.1
-                meaHz = int(datas[n_meaHz] + datas[n_meaHz + 1], 16) * 0.01
-                tEle = int(datas[n_tEle] + datas[n_tEle + 1] + datas[n_tEle + 2] + datas[n_tEle + 3], 16) * 0.01
-                nEle = int(datas[n_nEle] + datas[n_nEle + 1] + datas[n_nEle + 2] + datas[n_nEle + 3], 16) * 0.01
-                pEle = int(datas[n_pEle] + datas[n_pEle + 1], 16)*1.0
-                state = int(datas[n_state] + datas[n_state + 1], 16)
-                active = int(datas[n_active] + datas[n_active + 1], 16)
-                newThing = int(datas[n_newThing] + datas[n_newThing + 1], 16)
-                stateEqu = int(datas[n_stateEqu] + datas[n_stateEqu + 1], 16)
-                sNum = int(datas[n_snum] + datas[n_snum + 1], 16)
-                errornum = int(datas[n_errornum] + datas[n_errornum + 1], 16)
-                warnstring = str(datas[n_copy1]) + str(datas[n_copy1 + 1])
-                getwarn(device,warnstring,meaEle,tEle,meaVol,pEle,tPower,meaHz)
-                device.switch=state
-                device.save()
-                actual=ActualData.objects.filter(device__id=device.id)
-                if actual.__len__()>1:
-                    actual[0].delete()
-                RealTimeData.objects.create(device=device,meaEle=meaEle,tEle=tEle,meaHz=meaHz,meaVol=meaVol,pEle=pEle,tPower=tPower,switchstate=state,addTime=datetime.datetime.now())
-                ActualData.objects.update_or_create(device__id=device.id,
-                                                   defaults={'device': device, 'meaEle': meaEle, 'tEle': tEle,
-                                                             'meaHz': meaHz, 'meaVol': meaVol, 'pEle': pEle,
-                                                             'tPower': tPower, 'switchstate': state,
-                                                             'addTime': datetime.datetime.now()})
+            if device.type.tag=='0':
+                modbus100(device,datas)
+            elif device.type.tag=='1':
+                modbus300(device,datas)
+
         # getwaring(warnstring,device)
             # except:
             #     pass
@@ -227,17 +219,17 @@ def data_in_mysql_json(sn,data):
             device.lat = data['lat']
             device.save()
             RealTimeData.objects.create(device=device, meaEle=devicedata['cur'][0], meaHz=devicedata['freq'][0], meaVol=devicedata['vol'][0],tEle=devicedata['ele'][0], tPower=devicedata['power'][0],
-                                        switchstate=devicedata['output'], addTime=datetime.datetime.now())
+                                        switchstate=devicedata['output'], addTime=datetime.datetime.now(),params1=devicedata['temp'][0],params2=devicedata['temp1'][0],params3=devicedata['ctemp'][0])
             ActualData.objects.update_or_create(device__id=device.id,
                                                 defaults={'device': device, 'meaEle': devicedata['cur'][0], 'tEle': devicedata['ele'][0],
                                                           'meaHz': devicedata['freq'][0], 'meaVol': devicedata['vol'][0],
                                                           'tPower': devicedata['power'][0], 'switchstate': devicedata['output'],
-                                                          'addTime': datetime.datetime.now()})
+                                                          'addTime': datetime.datetime.now(),'params1':devicedata['temp'][0],'params2':devicedata['temp1'][0],'params3':devicedata['ctemp'][0]})
         except:
             pass
 
-@shared_task()
 # 定时任务，每小时执行，将实时数据统计电量储存
+@shared_task()
 def dataServer():
     dataList = RealTimeData.objects.filter(addTime__gte=datetime.datetime.now().date(),
                                            addTime__hour=datetime.datetime.now().hour).values(
@@ -246,9 +238,8 @@ def dataServer():
         DeviceHourDegree.objects.create(device_id=data['device'], ele=data['ele'], addTime=datetime.datetime.now())
 
 
-
-@shared_task()
 # 定时任务，离线判断，每*分钟执行
+@shared_task()
 def dataOnline():
     # 查询3分钟内有数据的设备
     deviceonlineList = RealTimeData.objects.filter(addTime__gte=datetime.datetime.now() - timedelta(minutes=3)).values(
@@ -265,8 +256,8 @@ def dataOnline():
     deviceofflinelist.update(status=0)
     deviceonlineList.update(status=1)
 
-@shared_task()
 # 定时任务，设备功率率统计
+@shared_task()
 def dataPower():
     devicepowerList = ActualData.objects.filter(addTime__gte=datetime.datetime.now() - timedelta(minutes=3)).values(
         'device__user').annotate(Sum('tPower'))
@@ -296,8 +287,8 @@ def dataPower():
     ActualDataBuild.objects.bulk_create(buildpowerL, batch_size=100)
 
 
-@shared_task()
 # 控制设备分合
+@shared_task()
 def controlOnoff(devicelist,switch):
     for device in devicelist:
         dyh=''
@@ -316,8 +307,10 @@ def controlOnoff(devicelist,switch):
             crcdm = getcrc(dm).replace(" ","0")
         client.subscribe(dyh)
         client.publish(dyh, bytearray.fromhex(crcdm))
+        time.sleep(0.5)
         # client.loop_start()
 
+# 进行空开内部校时
 @shared_task()
 def settime(device):
     dyh = device.sn + 'ctrraw'
@@ -356,18 +349,22 @@ def getstate(device):
         state = device.sn + 'state'
         ctr = device.sn + 'ctr'
     try:
-        crcdm = getcrc(dm)
+        crcdm = getcrc(dm).replace(" ",'0')
         client.subscribe(state)
         client.publish(ctr, bytearray.fromhex(crcdm))
     except:
         pass
 
 @shared_task()
-def glkz(sn,num,dm):
-    dyh = sn + 'ctrraw'
-    if (len(num) < 2):
-        num = '0' + num
-    sdm=num+'100011001326'+dm
+def glkz(device,dm):
+    if (len(device.num) < 2):
+        device.num = '0' + device.num
+    dyh=''
+    if (device.type.tag == '0'):
+        dyh =  device.sn + 'ctrraw'
+    else:
+        dyh = device.sn + 'ctr'
+    sdm=device.num+'100011001326'+dm
     crcdm=getcrc(sdm)
     client.subscribe(dyh)
     client.publish(dyh, bytearray.fromhex(crcdm))
@@ -395,9 +392,18 @@ def on_message(client, userdata, msg):
         sn=msg.topic.split('stateraw')[0]
         data_in_mysql_modbus.delay(sn,data)
     if matchtopic_state:
-        data = json.loads(str(msg.payload.decode('utf-8')))
-        sn = msg.topic.split('state')[0]
-        data_in_mysql_json.delay(sn,data)
+        try:
+            data = json.loads(str(msg.payload.decode('utf-8')))
+            sn = msg.topic.split('state')[0]
+            data_in_mysql_json.delay(sn, data)
+        except:
+            pass
+        try:
+            data = bytearray.hex(bytearray(msg.payload))
+            sn = msg.topic.split('state')[0]
+            data_in_mysql_modbus.delay(sn, data)
+        except:
+            pass
 
 
 
@@ -414,6 +420,7 @@ client = mqtt.Client(clean_session=True)
 
 # 启动函数
 def mqtt_run1():
+    print('启动函数')
     client.on_connect = on_connect
     client.on_message = on_message
     # 绑定 MQTT 服务器地址
@@ -427,4 +434,71 @@ def mqtt_run1():
     mqttthread = Thread(target=mqttfunction)
     mqttthread.start()
     # pass
+
+
+
+def modbus100(device,datas):
+    Bnum = int(datas[2], 16)
+    meaVol = int(datas[n_meaVol_100] + datas[n_meaVol_100 + 1], 16) * 0.1
+    meaEle = int(datas[n_meaEle_100] + datas[n_meaEle_100 + 1], 16) * 0.01
+    tPower = int(datas[n_tPower_100] + datas[n_tPower_100 + 1] + datas[n_tPower_100 + 2] + datas[n_tPower_100 + 3], 16) * 0.1
+    nPower = int(datas[n_nPower_100] + datas[n_nPower_100 + 1] + datas[n_nPower_100 + 2] + datas[n_nPower_100 + 3], 16) * 0.1
+    meaHz = int(datas[n_meaHz_100] + datas[n_meaHz_100+ 1], 16) * 0.01
+    tEle = int(datas[n_tEle_100]+ datas[n_tEle_100 + 1] + datas[n_tEle_100 + 2] + datas[n_tEle_100 + 3], 16) * 0.01
+    nEle = int(datas[n_nEle_100] + datas[n_nEle_100+ 1] + datas[n_nEle_100 + 2] + datas[n_nEle_100 + 3], 16) * 0.01
+    pEle = int(datas[n_pEle_100] + datas[n_pEle_100 + 1], 16) * 1.0
+    state = int(datas[n_state_100] + datas[n_state_100 + 1], 16)
+    active = int(datas[n_active_100] + datas[n_active_100 + 1], 16)
+    newThing = int(datas[n_newThing_100] + datas[n_newThing_100 + 1], 16)
+    stateEqu = int(datas[n_stateEqu_100] + datas[n_stateEqu_100 + 1], 16)
+    sNum = int(datas[n_snum_100] + datas[n_snum_100 + 1], 16)
+    errornum = int(datas[n_errornum_100] + datas[n_errornum_100 + 1], 16)
+    warnstring = str(datas[n_copy1_100]) + str(datas[n_copy1_100 + 1])
+    getwarn(device, warnstring, meaEle, tEle, meaVol, pEle, tPower, meaHz)
+    device.switch = state
+    device.save()
+    actual = ActualData.objects.filter(device__id=device.id)
+    if actual.__len__() > 1:
+        actual[0].delete()
+    RealTimeData.objects.create(device=device, meaEle=meaEle, tEle=tEle, meaHz=meaHz, meaVol=meaVol, pEle=pEle,
+                                tPower=tPower, switchstate=state, addTime=datetime.datetime.now())
+    ActualData.objects.update_or_create(device__id=device.id,
+                                        defaults={'device': device, 'meaEle': meaEle, 'tEle': tEle,
+                                                  'meaHz': meaHz, 'meaVol': meaVol, 'pEle': pEle,
+                                                  'tPower': tPower, 'switchstate': state,
+                                                  'addTime': datetime.datetime.now()})
+
+def modbus300(device,datas):
+    Bnum = int(datas[2], 16)
+    temp_L = int(datas[n_Ltemp_300] + datas[n_Ltemp_300 + 1], 16) * 0.1
+    temp_N = int(datas[n_Ntemp_300] + datas[n_Ntemp_300 + 1], 16) * 0.01
+    temp_C = int(datas[n_Ctemp_300] + datas[n_Ctemp_300 + 1], 16) * 0.1
+    meaVol = int(datas[n_meaVol_300] + datas[n_meaVol_300 + 1], 16) * 0.1
+    meaEle = int(datas[n_meaEle_300] + datas[n_meaEle_300 + 1], 16) * 0.01
+    tPower = int(datas[n_tPower_300] + datas[n_tPower_300 + 1] + datas[n_tPower_300 + 2] + datas[n_tPower_300 + 3], 16) * 0.1
+    nPower = int(datas[n_nPower_300] + datas[n_nPower_300 + 1] + datas[n_nPower_300 + 2] + datas[n_nPower_300 + 3], 16) * 0.1
+    meaHz = int(datas[n_meaHz_300] + datas[n_meaHz_300 + 1], 16) * 0.01
+    tEle = int(datas[n_tEle_300] + datas[n_tEle_300 + 1] + datas[n_tEle_300 + 2] + datas[n_tEle_300 + 3], 16) * 0.01
+    nEle = int(datas[n_nEle_300] + datas[n_nEle_300 + 1] + datas[n_nEle_300 + 2] + datas[n_nEle_300 + 3], 16) * 0.01
+    pEle = int(datas[n_pEle_300] + datas[n_pEle_300 + 1], 16) * 1.0
+    state = int(datas[n_state_300] + datas[n_state_300 + 1], 16)
+    stateEqu = int(datas[n_stateEqu_300] + datas[n_stateEqu_300 + 1], 16)
+    sNum = int(datas[n_snum_300] + datas[n_snum_300 + 1], 16)
+    errornum = int(datas[n_errornum_300] + datas[n_errornum_300 + 1], 16)
+    warnstring = str(datas[n_copy1_300]) + str(datas[n_copy1_300 + 1])
+    getwarn(device, warnstring, meaEle, tEle, meaVol, pEle, tPower, meaHz)
+    device.switch = state
+    device.save()
+    actual = ActualData.objects.filter(device__id=device.id)
+    if actual.__len__() > 1:
+        actual[0].delete()
+    RealTimeData.objects.create(device=device, meaEle=meaEle, tEle=tEle, meaHz=meaHz, meaVol=meaVol, pEle=pEle,
+                                tPower=tPower, switchstate=state, addTime=datetime.datetime.now(), params1=temp_L,
+                                params2=temp_N, params3=temp_C)
+    ActualData.objects.update_or_create(device__id=device.id,
+                                        defaults={'device': device, 'meaEle': meaEle, 'tEle': tEle,
+                                                  'meaHz': meaHz, 'meaVol': meaVol, 'pEle': pEle,
+                                                  'tPower': tPower, 'switchstate': state,
+                                                  'addTime': datetime.datetime.now(), 'params1': temp_L,
+                                                  'params2': temp_N, 'params3': temp_C})
 

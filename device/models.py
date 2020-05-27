@@ -47,7 +47,11 @@ class DeviceType(models.Model):
     icon=models.ImageField(verbose_name='设备类型图片', null=True, blank=True)
     remarks=models.CharField(max_length=500,verbose_name='备注',null=True,blank=True)
     tag=models.CharField(default='0',choices=TYPE_STATUS,verbose_name='订阅方式',max_length=1)
-    addtime=models.DateTimeField(auto_now=True)
+    pele=models.BooleanField('是否存在漏电流',default=False)
+    temp = models.BooleanField('是否存在温度', default=False)
+    sdxz = models.BooleanField('是否上电状态选择', default=False)
+    ldce = models.BooleanField('是否漏电测试按钮', default=False)
+    addtime=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -76,7 +80,7 @@ class Devices(models.Model):
     group=models.ForeignKey('Group',related_name='device',verbose_name='所属分组',on_delete=models.CASCADE)
     building = models.ForeignKey('Buidling', related_name='device', verbose_name='所属楼层', on_delete=models.CASCADE,null=True,blank=True)
     user = models.ForeignKey('rbac.UserInfo', related_name='device', verbose_name='所属用户', on_delete=models.CASCADE)
-    addtime=models.DateTimeField(auto_now=True)
+    addtime=models.DateTimeField(auto_now_add=True)
     status=models.CharField(max_length=50,choices=TYPE_STATUS,verbose_name='在离线状态',default=0)
     switch=models.CharField(max_length=50,choices=TYPE_SWITCH,verbose_name='开关状态',default=0)
     remarks = models.CharField(max_length=500, verbose_name='备注', null=True, blank=True)

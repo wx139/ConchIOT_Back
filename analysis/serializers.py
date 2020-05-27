@@ -7,14 +7,14 @@ class RealTimeListSerialiser(serializers.ModelSerializer):
     addTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = RealTimeData
-        fields = ['meaEle','meaVol','tPower','meaHz','tEle','addTime']
+        fields = ['meaEle','meaVol','tPower','meaHz','tEle','pEle','addTime','params1','params2','params3']
         depth = 1
 
 class ActualDataSerialiser(serializers.ModelSerializer):
     addTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = ActualData
-        fields = ['meaEle','meaVol','tPower','meaHz','tEle','addTime']
+        fields = ['meaEle','meaVol','tPower','meaHz','tEle','pEle','params1','params2','params3','addTime']
 
 
 class  ActualDataTotalSerialiser(serializers.ModelSerializer):

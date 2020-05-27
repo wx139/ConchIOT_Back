@@ -19,7 +19,7 @@ def on_connect(client, userdata, flag, rc):
 def on_message(client, userdata, msg):
     # out = str(msg.payload.decode('utf-8'))
     data = bytearray.hex(bytearray(msg.payload))
-    # print(msg.topic)
+    print(msg.topic)
     matchtopic_state=re.match('.*state$',msg.topic)
     matchtopic_stateraw = re.match('.*stateraw$', msg.topic)
     # print(matchtopic_state)
@@ -27,11 +27,17 @@ def on_message(client, userdata, msg):
         data = bytearray.hex(bytearray(msg.payload))
         sn=msg.topic.split('stateraw')[0]
         # print(sn)
-        data_in_mysql_modbus.delay(sn,data)
+        # data_in_mysql_modbus.delay(sn,data)
     if matchtopic_state:
+
         data = json.loads(str(msg.payload.decode('utf-8')))
         sn = msg.topic.split('state')[0]
-        data_in_mysql_json.delay(sn,data)
+        print(data)
+        data_in_mysql_json.delay(sn, data)
+        # data = bytearray.hex(bytearray(msg.payload))
+        print(data)
+        # data_in_mysql_modbus.delay(sn, data)
+
         # res = AsyncResult(result)  # 参数为task id
         # print(res.result)
     # print(data)

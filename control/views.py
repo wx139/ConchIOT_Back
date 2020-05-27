@@ -71,6 +71,7 @@ class deviceParams(APIView):
             ser.data[0]['guan2'] = getfromtime(ser.data[0]['guan2'])
             ser.data[0]['chongfu'] = getchongfu(ser.data[0]['chongfu'])
             ser.data[0]['fz_01'] = get0data(ser.data[0]['fz_01'])
+            ser.data[0]['fz_02'] = get1data(ser.data[0]['fz_02'])
             print(ser.data[0])
             jsondata={}
             jsondata['code']=20000
@@ -93,7 +94,9 @@ class deviceParams(APIView):
             data['chongfu'] = setchongfu(data['chongfu'])
 
             data['fz_01']= set0data(data['fz_01'])
+            data['fz_02'] = set1data(data['fz_02'])
             params = DeviceParams.objects.get(id=data['id'],device__user_id=user.id)
+            device= Devices.objects.get(id=data['device']['id'])
             ser = ParamsSerialiser(instance=params, data=data)
             if ser.is_valid():
                 ser.save()
@@ -110,8 +113,8 @@ class deviceParams(APIView):
                 else:
                     eleNum = 0
                 senddata['yjf'] = (hex(int(eleNum)).split('0x'))[1].zfill(8)
-                dm = senddata['gldz'] + senddata['zdgldz'] + senddata['gdydz'] + senddata['ddydz'] + senddata['kai1'] + senddata['guan1'] + senddata['kai2'] + senddata['guan2'] + senddata['chongfu'] + senddata['glys1'] + senddata['glys2'] + senddata['yjf'] + senddata['fz_01']
-                glkz(data['device']['sn'],data['device']['num'],dm)
+                dm = senddata['gldz'] + senddata['zdgldz'] + senddata['gdydz'] + senddata['ddydz'] + senddata['kai1'] + senddata['guan1'] + senddata['kai2'] + senddata['guan2'] + senddata['chongfu'] + senddata['glys1'] + senddata['glys2'] + senddata['yjf'] + senddata['fz_01']+ senddata['fz_02']
+                glkz(device,dm)
                 response = {}
                 response['data'] = ser.data
                 response['code'] = 20000
@@ -226,6 +229,29 @@ def get0data(fz0):
     return obj
 
 
+
+def get1data(fz01):
+    erjinzhi = bin(int(fz01, 16)).split('0b')[1]
+    backdata = erjinzhi.zfill(16)
+    obj = {}
+    obj['by1'] = gettf(backdata[15])
+    obj['by2'] = gettf(backdata[14])
+    obj['by3'] = gettf(backdata[13])
+    obj['by4'] = gettf(backdata[12])
+    obj['by5'] = gettf(backdata[11])
+    obj['by6'] = gettf(backdata[10])
+    obj['sdxz'] = gettf(backdata[9])
+    obj['by8'] = gettf(backdata[8])
+    obj['by9'] = gettf(backdata[7])
+    obj['by10'] = gettf(backdata[6])
+    obj['by11'] = gettf(backdata[5])
+    obj['by12'] = gettf(backdata[4])
+    obj['by13'] = gettf(backdata[3])
+    obj['by14'] = gettf(backdata[2])
+    obj['by15'] = gettf(backdata[1])
+    obj['by16'] = gettf(backdata[0])
+    return obj
+
 def setfromtime(obj):
     min=(hex(int(obj['min'])).split('0x')[1]).zfill(2)
     sec=(hex(int(obj['sec'])).split('0x')[1]).zfill(2)
@@ -275,6 +301,28 @@ def set0data(obj):
     backdata.append(settf(obj['k1']))
     backdata.append(settf(obj['ddybh']))
     backdata.append(settf(obj['gdybh']))
+    str = ''.join(backdata)
+    hexback = (hex(int(str, 2)).split('0x'))[1].zfill(4)
+    return hexback
+
+def set1data(obj):
+    backdata = []
+    backdata.append(settf(obj['by16']))
+    backdata.append(settf(obj['by15']))
+    backdata.append(settf(obj['by14']))
+    backdata.append(settf(obj['by13']))
+    backdata.append(settf(obj['by12']))
+    backdata.append(settf(obj['by11']))
+    backdata.append(settf(obj['by10']))
+    backdata.append(settf(obj['by9']))
+    backdata.append(settf(obj['by8']))
+    backdata.append(settf(obj['sdxz']))
+    backdata.append(settf(obj['by6']))
+    backdata.append(settf(obj['by5']))
+    backdata.append(settf(obj['by4']))
+    backdata.append(settf(obj['by3']))
+    backdata.append(settf(obj['by2']))
+    backdata.append(settf(obj['by1']))
     str = ''.join(backdata)
     hexback = (hex(int(str, 2)).split('0x'))[1].zfill(4)
     return hexback

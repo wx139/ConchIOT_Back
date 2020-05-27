@@ -64,7 +64,7 @@ class Role(models.Model):
 
 class UserInfo(AbstractUser):
     """
-    用户：划分角色
+    用户：划分角色1
     """
     real_name=models.CharField(max_length=50,verbose_name='真实姓名',default='')
     mobile=models.CharField(max_length=11,null=True,blank=True,verbose_name="手机号码")

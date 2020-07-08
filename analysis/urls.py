@@ -31,11 +31,15 @@ urlpatterns = [
     path('deviceType/', views.DeviceType.as_view()),  # 获取用户设备类型数据
     path('warnType/', views.WarnType.as_view()),  # 获取告警类型数据
     path('powerList/', views.TotalPower.as_view()),  #获取用户总功率历史
+    path('powerList_build/', views.TotalPowerBuild.as_view()),  #获取楼层总功率历史
+    path('powerList_group/', views.TotalPowerGroup.as_view()),  #获取楼层总功率历史
+    path('powerList_device/', views.TotalPowerDevice.as_view()),  #获取楼层总功率历史
     path('eleList/', views.EleDataList.as_view()),  #获取本月内电量数据
     path('eleList_30/', views.EleDataList_30.as_view()),  #获取本月内电量数据
     path('groupPowerList/', views.GroupPowerData.as_view()),  #获取本月内电量数据
     path('buildPowerList/', views.BuildPowerData.as_view()),  #获取本月内电量数据
     path('buildTree/', views.BuildTree.as_view()),  #设备楼层分组树形结构
+    path('buildTree_baobiao/', views.BuildTreeBb.as_view()),  # 设备楼层分组树形结构
     # path('buildPowerList/', views.BuildPowerData.as_view()),  #获取本月内电量数据
     # path('buildingSingle/', views.buildingSingle.as_view()),  # 获取用户下设备类型占比
     # path('typeList/', views.typeList.as_view()),  # 类型列表

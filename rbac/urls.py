@@ -27,8 +27,14 @@ urlpatterns = [
     path('info/', views.UserInfoSet.as_view()),        #获取当前用户信息
     path('getinfo/', views.GetInfo.as_view()),        #测试Token验证
     path('permission/', views.PermissionView.as_view()),  #获取用户权限
-    path('roles/', views.GetInfo.as_view()),           #获取角色列表
-    path('roles/', views.GetInfo.as_view()),           #获取角色列表
+    path('userList/', views.userList.as_view()),           #获取用户列表
+    path('userSingle/', views.userSingle.as_view()),   #用户信息
+    path('roleList/', views.roleList.as_view()),           #获取角色列表
+    path('roleSingle/', views.roleSingle.as_view()),   #角色信息
+    path('powerList/', views.powerList.as_view()),           #获取权限列表
+    path('powerSingle/', views.powerSingle.as_view()),   #角色信息
+    path('orgList/', views.orgList.as_view()),           #获取权限列表
+    path('orgSingle/', views.orgSingle.as_view()),   #角色信息
 ]
 
 urlpatterns=format_suffix_patterns(urlpatterns)

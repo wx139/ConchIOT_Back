@@ -13,22 +13,22 @@ app.config_from_object('django.conf:settings', namespace='CELERY') #  使用CELE
 app.conf.update(
     # 定时任务
     CELERYBEAT_SCHEDULE={
-        'add-every-30-seconds': {
+        'dataServer': {
             'task': 'access.tasks.dataServer',  # 将实时数据统计电量储存
             'schedule': crontab(minute=57, hour='*/1'),  # 每小时的57分执行一次任务
             'args': ()
         },
-        'add-every-3-seconds': {
-            'task': 'access.tasks.dataServer',  # 离线判断，每3分钟执行
+        'dataOnline': {
+            'task': 'access.tasks.dataOnline',  # 离线判断，每3分钟执行
             'schedule': crontab(minute="*/3"),  # 每3分种执行一次任务
             'args': ()
         },
-        'add-every-3-m': {
+        'dataPower': {
             'task': 'access.tasks.dataPower',  # 设备功率率统计
             'schedule': crontab(minute="*/1"),  # 每1分分组执行一次任务
             'args': ()
         },
-        'getallparams': {
+        'getstateAll': {
             'task': 'access.tasks.getstateAll',  # 设备功率率统计
             'schedule': crontab(minute=55, hour='*/1'),  # 每小时的57分执行一次任务
             'args': ()

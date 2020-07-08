@@ -22,6 +22,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('control/', views.deviceControl.as_view()),   #控制设备分合
+    path('loudian/', views.deviceLoudian.as_view()),   #控制漏电测试
     path('params/', views.deviceParams.as_view()),   #获取参数
     path('settime/', views.deviceSetTime.as_view()),  # 获取参数
 ]

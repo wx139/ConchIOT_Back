@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'ConchIOT_Back.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Conch_IOT',
+        'NAME': 'Conch_test',
         'USER':'root',
         'PASSWORD':'Wx18761725919',
         'HOST':'119.3.146.92',

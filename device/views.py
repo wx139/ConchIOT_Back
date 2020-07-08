@@ -13,15 +13,25 @@ from django.db.models import Avg, Max, Min,Sum,Count
 from access.models import *
 import datetime
 from logs.models import *
+from rbac.models import *
 
 # Create your views here.
-
+def getDept(id,depts,dept_arr):
+    for dept in depts:
+        if dept.parent and dept.parent.id==id:
+            dept_arr.append(dept.id)
+            dept_arr=(getDept(dept.id,depts,dept_arr))
+    return dept_arr
 
 class deviceList(APIView):
     # 获取用户下设备列表
     def get(self,request,format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             query_params=list(request.query_params.keys())
             kwargs={
 
@@ -36,7 +46,7 @@ class deviceList(APIView):
                 kwargs['type__id'] = request.query_params['type']
             if 'name' in query_params:
                 kwargs['name__contains'] = request.query_params['name']
-            kwargs['user__id']=user.id
+            kwargs['user__dept_id__in']=dept_arr
             devices_list=Devices.objects.filter(**kwargs).order_by('-addtime')
             page = PageNumberPagination()  # 生成分页器对象
             page.page_size = 2  # 设置每页的条数
@@ -71,8 +81,12 @@ class deviceList(APIView):
     def delete(self,request):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             ids=request.data['deviceids']
-            devices=Devices.objects.filter(id__in=ids,user_id=user.id)
+            devices=Devices.objects.filter(id__in=ids,user__dept_id__in=dept_arr)
             devices.delete()
             jsondata={}
             jsondata['code']=20000
@@ -91,16 +105,21 @@ class deviceList(APIView):
                 'msg': '数据删除失败'
             })
 
-
-
 #编辑查询单个设备
 class deviceSingle(APIView):
     # 获取单个设备信息
     def get(self,request,format='JSON'):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
+            print(dept_arr)
             device_id = request.query_params['deviceid']
-            device=Devices.objects.get(id=device_id,user_id=user.id)
+            print(device_id)
+            device=Devices.objects.get(id=device_id,user__dept_id__in=dept_arr)
+            print(device)
             serializer = DeviceListSerialiser(device)
             response = {}
             response['data'] = serializer.data
@@ -130,13 +149,29 @@ class deviceSingle(APIView):
             json_data['lat']=build.lat
             ser=None
             if json_data['datatag']==1:
+                deviceExit = Devices.objects.filter(sn=json_data['sn'], num=json_data['num'])
+                if deviceExit:
+                    return Response({
+                        'code': 20000,
+                        'tag': 1,
+                        'msg': '数据重复'
+                    })
                 ser = DeviceSerializer(data=json_data)
             else:
                 json_list=[]
+                if type(json_data['length']=='str'):
+                    json_data['length']=int(json_data['length'])
                 for i in range(json_data['length']):
                     json_obj = json_data.copy()
                     json_obj['num']=hex(i+1).split('0x')[1]
                     json_obj['name'] = json_data['name']+str(i+1)
+                    deviceExit=Devices.objects.filter(sn=json_obj['sn'],num=json_obj['num'])
+                    if deviceExit:
+                        return  Response({
+                            'code': 20000,
+                            'tag':1,
+                            'msg': '数据重复'
+                        })
                     json_list.append(json_obj)
                 ser = DeviceSerializer(data=json_list,many=True)
             if ser.is_valid():
@@ -167,8 +202,12 @@ class deviceSingle(APIView):
     def delete(self,request):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             id=request.data['deviceid']
-            devices=Devices.objects.filter(id=id,user_id=user.id)
+            devices=Devices.objects.filter(id=id,user__dept_id__in=dept_arr)
             devices.delete()
             jsondata={}
             jsondata['code']=20000
@@ -190,11 +229,15 @@ class deviceSingle(APIView):
     def put(self,request):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             id = request.data['id']
             json_data = request.data.copy()
             json_data['user'] = request.user.id
             groupid = json_data['group']
-            build = Buidling.objects.get(group__id=groupid,user_id=user.id)
+            build = Buidling.objects.get(group__id=groupid,user__dept_id__in=dept_arr)
             json_data['lng'] = build.lng
             json_data['lat'] = build.lat
             device = Devices.objects.get(id=id)
@@ -229,13 +272,17 @@ class groupList(APIView):
     def get(self, request, format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             query_params = list(request.query_params.keys())
             kwargs = {}
             if 'building' in query_params:
                 kwargs['building__id'] = request.query_params['building']
             if 'name' in query_params:
                 kwargs['name__contains'] = request.query_params['name']
-            kwargs['user__id']=user.id
+            kwargs['user__dept_id__in']=dept_arr
             group_list = Group.objects.filter(**kwargs).order_by()
             page = PageNumberPagination()  # 生成分页器对象
             page.page_size = 20  # 设置每页的条数
@@ -295,8 +342,12 @@ class  groupSingle(APIView):
     def get(self,request,format='JSON'):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             group_id = request.query_params['groupid']
-            group = Group.objects.get(id=group_id,user_id=user.id)
+            group = Group.objects.get(id=group_id,user__dept_id__in=dept_arr)
             serializer = GroupListSerialiser(group)
             response = {}
             response['data'] = serializer.data
@@ -384,8 +435,15 @@ class  groupSingle(APIView):
     def delete(self,request):
         user=request.user
         try:
-            id = request.data['groupid']
-            group = Group.objects.get(id=id,user_id=user.id)
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
+            if request.data.__len__()==0:
+                id = request.query_params['groupid']
+            else:
+                id = request.data['groupid']
+            group = Group.objects.get(id=id,user__dept_id__in=dept_arr)
             device = group.device.all()
             if len(device) > 0:
                 jsondata = {}
@@ -419,13 +477,17 @@ class buildingList(APIView):
     def get(self, request, format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             query_params = list(request.query_params.keys())
             kwargs = {
 
             }
             if 'name' in query_params:
                 kwargs['name__contains'] = request.query_params['name']
-            kwargs['user__id']=user.id
+            kwargs['user__dept_id__in']=dept_arr
             buidling_list = Buidling.objects.filter(**kwargs).order_by('-addtime')
             page = PageNumberPagination()  # 生成分页器对象
             page.page_size = 20  # 设置每页的条数
@@ -487,13 +549,17 @@ class buildingSingle(APIView):
     def get(self, request, format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             query_params = list(request.query_params.keys())
             kwargs = {
 
             }
             if 'id' in query_params:
                 kwargs['id'] = request.query_params['id']
-                kwargs['user__id']=user.id
+                kwargs['user__dept_id__in']=dept_arr
                 buidling = Buidling.objects.get(**kwargs)
                 ret=BuildingSerializer(buidling)
                 jsondata={}
@@ -612,8 +678,15 @@ class buildingSingle(APIView):
     def delete(self,request):
         user=request.user
         try:
-            id = request.data['buildingid']
-            building = Buidling.objects.get(id=id,user_id=user.id)
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
+            if request.data.__len__()==0:
+                id = request.query_params['buildingid']
+            else:
+                id = request.data['buildingid']
+            building = Buidling.objects.get(id=id,user__dept_id__in=dept_arr)
             group=building.group.all()
             if len(group)>0:
                 jsondata = {}
@@ -776,3 +849,4 @@ class downTempleate(APIView):
         Logs.objects.create(content=content, user=user, addtime=datetime.datetime.now(),
                             ip=request.META['REMOTE_ADDR'])
         return response
+

@@ -11,15 +11,27 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import json
 import requests
+from rbac.models import *
 from logs.models import *
 
 # Create your views here.
+def getDept(id,depts,dept_arr):
+    for dept in depts:
+        if dept.parent and dept.parent.id==id:
+            dept_arr.append(dept.id)
+            dept_arr=(getDept(dept.id,depts,dept_arr))
+    return dept_arr
+
 class deviceSetTime(APIView):
     def post(self,request,format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             data=request.data
-            device=Devices.objects.get(id=data['id'],user_id=user.id)
+            device=Devices.objects.get(id=data['id'],user__dept_id__in=dept_arr)
             if device:
                 settime(device)
                 content = user.username + '对设备进行校时操作；结果：成功！'
@@ -54,11 +66,15 @@ class deviceParams(APIView):
     def get(self,request,format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             deviceid=request.query_params['deviceid']
             # getstate()
             device = Devices.objects.get(id=deviceid)
             getstate(device)
-            deviceparams=DeviceParams.objects.filter(device__user_id=user.id,device__id=deviceid)
+            deviceparams=DeviceParams.objects.filter(device__user__dept_id__in=dept_arr,device__id=deviceid)
             if deviceparams.__len__()==0:
                 jsondata = {}
                 jsondata['code'] = 20000
@@ -86,6 +102,11 @@ class deviceParams(APIView):
     def post(self,request,format="JSON"):
         user=request.user
         try:
+            print('1')
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             data=request.data
             data['kai1']=setfromtime(data['kai1'])
             data['kai2'] = setfromtime(data['kai2'])
@@ -95,7 +116,7 @@ class deviceParams(APIView):
 
             data['fz_01']= set0data(data['fz_01'])
             data['fz_02'] = set1data(data['fz_02'])
-            params = DeviceParams.objects.get(id=data['id'],device__user_id=user.id)
+            params = DeviceParams.objects.get(id=data['id'],device__user__dept_id__in=dept_arr)
             device= Devices.objects.get(id=data['device']['id'])
             ser = ParamsSerialiser(instance=params, data=data)
             if ser.is_valid():
@@ -133,7 +154,7 @@ class deviceParams(APIView):
                                 ip=request.META['REMOTE_ADDR'])
             return Response({
                 'code': 0,
-                'msg': '设备参数获取失败'
+                'msg': '设备参数设置失败'
             })
 
 
@@ -143,11 +164,17 @@ class deviceControl(APIView):
     def post(self,request,format="JSON"):
         user=request.user
         try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
             deviceids=request.data['deviceids']
             switch = request.data['switch']
-            devices_list=Devices.objects.filter(user_id=user.id,id__in=deviceids)
+            if isinstance(deviceids, str) :
+                deviceids=[deviceids]
+            devices_list=Devices.objects.filter(user__dept_id__in=dept_arr,id__in=deviceids)
             devices_data=DeviceListSerialiser(devices_list,many=True).data
-            controlOnoff(devices_data,switch)
+            controlOnoff(devices_list,switch)
             jsondata={}
             jsondata['code']=20000
             jsondata['msg'] = '设备分合命令下发成功'
@@ -159,9 +186,10 @@ class deviceControl(APIView):
             content = user.username + '对设备进行'+tag+'操作；结果：成功！'
             Logs.objects.create(content=content, user=user, addtime=datetime.datetime.now(),
                                 ip=request.META['REMOTE_ADDR'])
+            getdata(devices_data)
             return Response(jsondata)
         except:
-            content = user.username + '对设备进行控制操作；结果：成功！'
+            content = user.username + '对设备进行控制操作；结果：失败！'
             Logs.objects.create(content=content, user=user, addtime=datetime.datetime.now(),
                                 ip=request.META['REMOTE_ADDR'])
             return Response({
@@ -169,6 +197,36 @@ class deviceControl(APIView):
                 'msg': '设备分合命令下发失败'
             })
 
+#控制设备分控
+class deviceLoudian(APIView):
+    # 获取用户下设备列表
+    def post(self,request,format="JSON"):
+        user=request.user
+        try:
+            dept_id = user.dept.id
+            dept_arr = []
+            depts = Department.objects.all()
+            getDept(dept_id, depts, dept_arr).append(dept_id)
+            deviceids=request.data['deviceids']
+            devices_list=Devices.objects.filter(user__dept_id__in=dept_arr,id__in=deviceids)
+            devices_data=DeviceListSerialiser(devices_list,many=True).data
+            Loudian(devices_list)
+            jsondata={}
+            jsondata['code']=20000
+            jsondata['msg'] = '设备分合命令下发成功'
+            content = user.username + '对设备进行漏电测试操作；结果：成功！'
+            Logs.objects.create(content=content, user=user, addtime=datetime.datetime.now(),
+                                ip=request.META['REMOTE_ADDR'])
+            getdata(devices_data)
+            return Response(jsondata)
+        except:
+            content = user.username + '对设备进行漏电测试操作；结果：失败！'
+            Logs.objects.create(content=content, user=user, addtime=datetime.datetime.now(),
+                                ip=request.META['REMOTE_ADDR'])
+            return Response({
+                'code': 0,
+                'msg': '设备漏电测试命令下发失败'
+            })
 
 def getfromtime(time):
     min1=time[0]+time[1]
@@ -246,7 +304,7 @@ def get1data(fz01):
     obj['by10'] = gettf(backdata[6])
     obj['by11'] = gettf(backdata[5])
     obj['by12'] = gettf(backdata[4])
-    obj['by13'] = gettf(backdata[3])
+    obj['ycgs'] = gettf(backdata[3])
     obj['by14'] = gettf(backdata[2])
     obj['by15'] = gettf(backdata[1])
     obj['by16'] = gettf(backdata[0])
@@ -310,7 +368,7 @@ def set1data(obj):
     backdata.append(settf(obj['by16']))
     backdata.append(settf(obj['by15']))
     backdata.append(settf(obj['by14']))
-    backdata.append(settf(obj['by13']))
+    backdata.append(settf(obj['ycgs']))
     backdata.append(settf(obj['by12']))
     backdata.append(settf(obj['by11']))
     backdata.append(settf(obj['by10']))

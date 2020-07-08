@@ -95,6 +95,16 @@ class Devices(models.Model):
     param9 = models.CharField(max_length=50, verbose_name='备用参数9', null=True, blank=True)
     param10 = models.CharField(max_length=50, verbose_name='备用参数10', null=True, blank=True)
     param11 = models.CharField(max_length=50, verbose_name='备用参数11', null=True, blank=True)
+    param12 = models.CharField(max_length=50, verbose_name='备用参数12', null=True, blank=True)
+    param13 = models.CharField(max_length=50, verbose_name='备用参数13', null=True, blank=True)
+    param14 = models.CharField(max_length=50, verbose_name='备用参数14', null=True, blank=True)
+    param15 = models.CharField(max_length=50, verbose_name='备用参数15', null=True, blank=True)
+    param16 = models.CharField(max_length=50, verbose_name='备用参数16', null=True, blank=True)
+    param17 = models.CharField(max_length=50, verbose_name='备用参数17', null=True, blank=True)
+    param18 = models.CharField(max_length=50, verbose_name='备用参数18', null=True, blank=True)
+    param19 = models.CharField(max_length=50, verbose_name='备用参数19', null=True, blank=True)
+    param20 = models.CharField(max_length=50, verbose_name='备用参数20', null=True, blank=True)
+    param21 = models.CharField(max_length=50, verbose_name='备用参数21', null=True, blank=True)
 
 
     def save(self,*args,**kwargs):

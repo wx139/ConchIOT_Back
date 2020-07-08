@@ -27,6 +27,13 @@ class RealTimeData(models.Model):
     params11 = models.FloatField('备用参数11',null=True,blank=True)  # 漏电流
     params12 = models.FloatField('备用参数12',null=True,blank=True)  # 漏电流
     params13 = models.FloatField('备用参数13',null=True,blank=True)  # 漏电流
+    params14 = models.FloatField('备用参数4', null=True, blank=True)  # 漏电流
+    params15 = models.FloatField('备用参数5', null=True, blank=True)  # 漏电流
+    params16 = models.FloatField('备用参数6', null=True, blank=True)  # 漏电流
+    params17 = models.FloatField('备用参数7', null=True, blank=True)  # 漏电流
+    params18 = models.FloatField('备用参数8', null=True, blank=True)  # 漏电流
+    params19 = models.FloatField('备用参数9', null=True, blank=True)  # 漏电流
+    params20 = models.FloatField('备用参数10', null=True, blank=True)  # 漏电流
 
     switchstate = models.IntegerField(choices=SWITCH_TYPE,verbose_name='设备开关状态')  # 设备开关状态
 
@@ -104,6 +111,13 @@ class ActualData(models.Model):
     params11 = models.FloatField('备用参数11',null=True,blank=True)  # 漏电流
     params12 = models.FloatField('备用参数12',null=True,blank=True)  # 漏电流
     params13 = models.FloatField('备用参数13',null=True,blank=True)  # 漏电流
+    params14 = models.FloatField('备用参数4', null=True, blank=True)  # 漏电流
+    params15 = models.FloatField('备用参数5', null=True, blank=True)  # 漏电流
+    params16 = models.FloatField('备用参数6', null=True, blank=True)  # 漏电流
+    params17 = models.FloatField('备用参数7', null=True, blank=True)  # 漏电流
+    params18 = models.FloatField('备用参数8', null=True, blank=True)  # 漏电流
+    params19 = models.FloatField('备用参数9', null=True, blank=True)  # 漏电流
+    params20 = models.FloatField('备用参数10', null=True, blank=True)  # 漏电流
 
     switchstate = models.IntegerField(choices=SWITCH_TYPE,verbose_name='设备开关状态')  # 设备开关状态
 

@@ -10,6 +10,13 @@ class RealTimeListSerialiser(serializers.ModelSerializer):
         fields = ['meaEle','meaVol','tPower','meaHz','tEle','pEle','addTime','params1','params2','params3']
         depth = 1
 
+class RealTimeListSerialiser_WL(serializers.ModelSerializer):
+    addTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    class Meta:
+        model = RealTimeData
+        fields = ['params3','params2','params4','params5','params6','addTime','params7','params8','params9','params10','params11','params12','params13','params14','params15','params16','params17','params18','params19','meaHz','pEle','meaEle','tPower']
+        depth = 1
+
 class ActualDataSerialiser(serializers.ModelSerializer):
     addTime = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
@@ -59,4 +66,6 @@ class BuildSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Buidling
         fields = ['id','name','group','children']
+
+
 

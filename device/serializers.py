@@ -5,7 +5,7 @@ from .models import *
 class DeviceListSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Devices
-        fields = ['id','name','sn','num','address','type','group','building','status','switch','lng','lat','remarks']
+        fields = ['id','name','sn','num','address','type','group','building','status','switch','lng','lat','remarks','param4']
         depth = 1
 
 class Device_GroupSerialiser(serializers.ModelSerializer):
